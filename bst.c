@@ -1,12 +1,26 @@
+
 #include <stdio.h>/* for printf */
-
 #include <stdlib.h>/* for free() */
-
 #include <string.h> /* for strlen */
+#include "bst.h"/* for list operations */
 
-#include "llist.h"/* for list operations */
+int main(){
+  bstNode *root = root = Null;
+  char command = 'c';
+  char *name;
 
+  
+}
 
+bstNode* newbstNode( char* eName){
+  bstNode *node = ( bstNode*) malloc ( sizeof(bstNode));
+  node->string = malloc (strlen(eName)+1);
+  strcpy( node->string,eName);
+  node->left = Null;
+  node->right = Null;
+  return node;
+    
+}
 
 
 
