@@ -8,7 +8,6 @@ int main(){
   bstNode *root = root = Null;
   char command = 'c';
   char *name;
-
   
 }
 
@@ -90,30 +89,56 @@ bstNode* removeNode(bstNode *root, char *eName){
   }
 }
 
+bstNode* min(bstNode *root){
 
+  if(root->left == NULL)
+    return root;
 
-/* read no more than limit chars into s, return #chars read.  Doesn't include trailing \n */
+  return min(root->left);
+}
 
-int gets_n(char *s, int limit)
+void inOrder(bstNode *root){
 
-{
+  if(root != NULL){
+    inOrder(root->left);
+    printf("s\n", root->right);
+    inOrder(root->right);
+  }
+}
+//
+bstNode* readTXT (bstNode *root, char *filename){
 
-  char *p = s;/* for indexing into s */
+  FILE *file;
+  file = fopen (filename, "r");
 
-  char c;
+  if (file == NULL){
 
-  if (fgets(s, limit, stdin)) {
+    printf ("File does not exist\n");
 
-    while ((c = *p) && c != '\n') /* scan p through s until 0 or \n */
+    return root;
+  }
+  cahr *string = (cahr*) malloc (sizeof(char*));
 
-      p++;
+  while(!feof (file)){
 
-    if (c == '\n')/* erase \n */
-
-      *p = 0;
-
+    fscanf(file, "%s", string);
+    root = addNode(root, string);
+    
   }
 
-    return (p - s);/* #chars read (not including terminator or \n*/
+  fclose(file);
+  
+  free(string);
+  return root;
+}
 
-  } 
+void writeTXT (bstNode *root, FILE *file){
+
+  if(root != NULL){
+
+    writeTxt(root->left, file);
+    fprintf(file, "%s\n", root->name);
+    writeTxt(root->right, file);
+  }
+}
+/* read no more than limit chars into s, return #chars read.  Doesn't include trailing \n */
