@@ -142,3 +142,4 @@ void writeTXT (bstNode *root, FILE *file){
   }
 }
 /* read no more than limit chars into s, return #chars read.  Doesn't include trailing \n */
+/*adding some metods */
