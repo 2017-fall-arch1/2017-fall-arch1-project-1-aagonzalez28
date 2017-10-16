@@ -27,3 +27,5 @@ clean:
 demo: llDemo bst
 	(echo first; echo "second line"; echo "third and last") | ./llDemo
 
+#missing some variables 
+

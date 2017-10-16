@@ -106,7 +106,7 @@ void inOrder(bstNode *root){
   }
 }
 //
-bstNode* readTXT (bstNode *root, char *filename){
+bstNode* readTxt (bstNode *root, char *filename){
 
   FILE *file;
   file = fopen (filename, "r");
@@ -132,7 +132,7 @@ bstNode* readTXT (bstNode *root, char *filename){
   return root;
 }
 
-void writeTXT (bstNode *root, FILE *file){
+void writeTxt (bstNode *root, FILE *file){
 
   if(root != NULL){
 
@@ -142,4 +142,3 @@ void writeTXT (bstNode *root, FILE *file){
   }
 }
 /* read no more than limit chars into s, return #chars read.  Doesn't include trailing \n */
-/*adding some metods */
