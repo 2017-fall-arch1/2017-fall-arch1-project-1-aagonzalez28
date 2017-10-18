@@ -1,6 +1,6 @@
 all: llDemo
 
-CFLAGS=-g -O3
+CFLAGS=-g -O3 -Wall
 
 # Symbols helpful for understanding the productions
 #   $@ is the production's target

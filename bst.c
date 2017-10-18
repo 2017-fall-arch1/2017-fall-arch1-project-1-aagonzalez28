@@ -7,7 +7,7 @@
 int main(){
   bstNode *root = root = Null;
   char command = 'c';
-  char *name;
+  char *string;
   
 }
 
@@ -27,7 +27,7 @@ bstNode* addNode (bstNode *root, char *eName){
   if (root == Null)
     root = newnewbstNode(eName);
   
-  int temp = strcmp(root-> string,eName);
+  int temp = strcmp(root->string,eName);
   if(temp > 0)
     root->left = addNode(root->left,eName);
   else if(temp < 0)
@@ -78,7 +78,7 @@ bstNode* removeNode(bstNode *root, char *eName){
       free(root->string);
       free(root);
 
-      temp3->string = malloc(strlen(tem1->name)+1);
+      temp3->string = malloc(strlen(temp1->string)+1);
       
       strcpy(temp3->string, min(temp1)->string);
       temp3->left =  temp2;
@@ -101,11 +101,11 @@ void inOrder(bstNode *root){
 
   if(root != NULL){
     inOrder(root->left);
-    printf("s\n", root->right);
+    printf("s\n", root->string);
     inOrder(root->right);
   }
 }
-//
+
 bstNode* readTxt (bstNode *root, char *filename){
 
   FILE *file;
@@ -117,7 +117,7 @@ bstNode* readTxt (bstNode *root, char *filename){
 
     return root;
   }
-  cahr *string = (cahr*) malloc (sizeof(char*));
+  char *string = (char*) malloc (sizeof(char*));
 
   while(!feof (file)){
 
@@ -140,5 +140,14 @@ void writeTxt (bstNode *root, FILE *file){
     fprintf(file, "%s\n", root->name);
     writeTxt(root->right, file);
   }
+}
+
+bstNode* freeMemory(bstNode *root){
+
+  while( root != Null){
+
+    root = removeNode(root, root->name);
+  }
+  return Null;
 }
 /* read no more than limit chars into s, return #chars read.  Doesn't include trailing \n */
