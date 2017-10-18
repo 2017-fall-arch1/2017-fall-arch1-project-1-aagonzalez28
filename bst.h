@@ -12,4 +12,21 @@ typedef struct bstNode{
 }
   bstNode;
 
+bstNode* newbstNode(char*);
+
+bstNode* addNode(bstNode*, char*);
+
+bstNode* removeNode(bstNode*, char*);
+
+bstNode* min(bstNode*);
+
+void inOrder(bstNode*);
+
+bstNode* readTxt(bstNode*, char*);
+
+void* writeTxt(bstNode*, File*);
+
+bstNode* freeMemory(bstNode*);
+
+
 #endif
