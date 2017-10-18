@@ -5,46 +5,105 @@
 #include "bst.h"/* for list operations */
 
 int main(){
-  bstNode *root = root = Null;
+  bstNode *root = root = NULL;
   char command = 'c';
   char *string;
-  
-}
+
+
+  while(command != 'c'){
+
+    printf("Enter 'n' to enter a name\n" "Enter 'd' to delete a name\n"
+	   "Enter 'l' for list of names\n" "Enter 'r' to read file\n"
+	   "Enter 'w' to write name to file\n" "Enter 'e' to exit\n");
+
+    scanf("%c",&command);
+
+    if (command == 'n'){
+
+      printf("Enter the name you want to add" );
+      scanf("%s",string);
+      root = addNode(root, string);
+      
+    }
+
+    else if(command == 'd'){
+
+	printf("Enter the name you want to delete: \n");
+	scanf("%s",string);
+	root = removeNode(root, string);
+
+      }
+
+    else if(command == 'l'){
+
+	inOrder(root);
+
+      }
+
+    else if(command == 'r'){
+
+	printf("Enter file to read\n");
+	scanf("%s", string);
+	root = readTxt(root, string);
+
+      }
+
+    else if(command == 'w'){
+
+	printf("Enter the file to write\n");
+	scanf("%s", string);
+
+	FILE *file;
+	file = fopen(string,"w");
+	writeTxt(root,file);
+	fclose(file);
+
+      }
+
+      getchar();
+
+      }
+
+    printf("Thank You! Please come back again.");
+
+    root = freeMemory(root);
+    
+  }
 
 bstNode* newbstNode (char* eName){
   
   bstNode *node = (bstNode*) malloc (sizeof(bstNode));
   node->string = malloc (strlen(eName)+1);
   strcpy (node->string,eName);
-  node->left = Null;
-  node->right = Null;
+  node->left = NULL;
+  node->right = NULL;
   return node;
     
 }
 
 bstNode* addNode (bstNode *root, char *eName){
 
-  if (root == Null)
-    root = newnewbstNode(eName);
+  if (root == NULL)
+    root = newbstNode(eName);
   
-  int temp = strcmp(root->string,eName);
+  int temp = strcmp(root->string, eName);
   if(temp > 0)
-    root->left = addNode(root->left,eName);
-  else if(temp < 0)
     root->right = addNode(root->right, eName);
+  else if(temp < 0)
+    root->left = addNode(root->left, eName);
   return root;
 }
 
 bstNode* removeNode(bstNode *root, char *eName){
 
-  if (root == Null)
+  if (root == NULL)
     return root;
 
   int temp = strcmp(root->string, eName);
   if (temp > 0)
-    root->left = removeNode(root->left, eName);
-  else if (temp < 0)
     root->right = removeNode(root->right, eName);
+  else if (temp < 0)
+    root->left = removeNode(root->left, eName);
 
   else{
 
@@ -61,7 +120,7 @@ bstNode* removeNode(bstNode *root, char *eName){
       return temp1;
     }
 
-    else if (root->right == Null){
+    else if (root->right == NULL){
 
       temp1 = root->left;
       free(root->string);
@@ -73,7 +132,7 @@ bstNode* removeNode(bstNode *root, char *eName){
     else{
 
       temp1 = root->right;
-      temp2 = root-> left;
+      temp2 = root->left;
 
       free(root->string);
       free(root);
@@ -101,7 +160,7 @@ void inOrder(bstNode *root){
 
   if(root != NULL){
     inOrder(root->left);
-    printf("s\n", root->string);
+    printf("%s\n", root->string);
     inOrder(root->right);
   }
 }
@@ -137,17 +196,17 @@ void writeTxt (bstNode *root, FILE *file){
   if(root != NULL){
 
     writeTxt(root->left, file);
-    fprintf(file, "%s\n", root->name);
+    fprintf(file, "%s\n", root->string);
     writeTxt(root->right, file);
   }
 }
 
 bstNode* freeMemory(bstNode *root){
 
-  while( root != Null){
+  while( root != NULL){
 
-    root = removeNode(root, root->name);
+    root = removeNode(root, root->string);
   }
-  return Null;
+  return NULL;
 }
 /* read no more than limit chars into s, return #chars read.  Doesn't include trailing \n */

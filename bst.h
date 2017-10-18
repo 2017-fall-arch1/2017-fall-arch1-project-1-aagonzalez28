@@ -1,3 +1,6 @@
+#ifndef bst_include          /* To prevent inclusions */
+#define bst_include
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -24,7 +27,7 @@ void inOrder(bstNode*);
 
 bstNode* readTxt(bstNode*, char*);
 
-void* writeTxt(bstNode*, File*);
+void writeTxt(bstNode*, FILE*);
 
 bstNode* freeMemory(bstNode*);
 
