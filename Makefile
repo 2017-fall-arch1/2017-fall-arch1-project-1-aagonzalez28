@@ -1,4 +1,4 @@
-all: llDemo
+all: llDemo bst
 
 CFLAGS=-g -O3 -Wall
 
@@ -25,7 +25,7 @@ clean:
 	rm -f *.o llDemo  bst
 
 demo: llDemo bst
-	(echo first; echo "second line"; echo "third and last") | ./llDemo
+	(echo first; echo "second line"; echo "third and last") | ./llDemo ./bst
 
 #missing some variables 
 
